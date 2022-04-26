@@ -1,0 +1,11 @@
+{
+  "version": 2,
+  "dgSpecHash": "amgNicjpfZg2GsZf5ye+ANUgHeaf/MfnK5yVhxPijy0s/e4lv1gIllcBg+Oj3GrXMU81GOpwG+8NXM2LTdNezg==",
+  "success": true,
+  "projectFilePath": "D:\\1_PROGRAMARE\\C#\\PROIECTE\\ATESTAT_PROFESIONAL\\Automobiles_Store\\Automobiles_Store_FRONT_END\\Automobiles_Store_BACK_END_With_MY_SQL\\Automobiles_Store_BACK_END_With_MY_SQL.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\Hoadrea Razvan\\.nuget\\packages\\microsoft.netcore.platforms\\1.1.0\\microsoft.netcore.platforms.1.1.0.nupkg.sha512",
+    "C:\\Users\\Hoadrea Razvan\\.nuget\\packages\\netstandard.library\\2.0.3\\netstandard.library.2.0.3.nupkg.sha512"
+  ],
+  "logs": []
+}

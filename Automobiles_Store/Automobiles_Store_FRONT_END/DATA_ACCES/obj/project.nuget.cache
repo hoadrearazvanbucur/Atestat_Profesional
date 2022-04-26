@@ -1,0 +1,11 @@
+{
+  "version": 2,
+  "dgSpecHash": "FAJLlTqc84MwU5N5OapsGjdc07bTogyEgV+7ON03R+PKddnwY2thMNiZMnnyK+DO1EuGwmqDbzpwgjAy3I4PIw==",
+  "success": true,
+  "projectFilePath": "D:\\1_PROGRAMARE\\C#\\PROIECTE\\ATESTAT_PROFESIONAL\\Automobiles_Store\\Automobiles_Store_FRONT_END\\DATA_ACCES\\DATA_ACCES.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\Hoadrea Razvan\\.nuget\\packages\\microsoft.netcore.platforms\\1.1.0\\microsoft.netcore.platforms.1.1.0.nupkg.sha512",
+    "C:\\Users\\Hoadrea Razvan\\.nuget\\packages\\netstandard.library\\2.0.3\\netstandard.library.2.0.3.nupkg.sha512"
+  ],
+  "logs": []
+}
