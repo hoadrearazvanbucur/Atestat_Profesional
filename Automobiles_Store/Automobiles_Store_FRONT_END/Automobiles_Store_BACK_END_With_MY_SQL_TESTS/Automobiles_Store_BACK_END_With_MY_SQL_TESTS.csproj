@@ -20,4 +20,8 @@
     <Folder Include="1_User_Tests\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Automobiles_Store_BACK_END_With_MY_SQL\Automobiles_Store_BACK_END_With_MY_SQL.csproj" />
+  </ItemGroup>
+
 </Project>

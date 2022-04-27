@@ -901,6 +901,29 @@
         "build": {
           "build/netcoreapp1.0/xunit.runner.visualstudio.props": {}
         }
+      },
+      "Automobiles_Store_BACK_END_With_TEXT_FILE/1.0.0": {
+        "type": "project",
+        "framework": ".NETStandard,Version=v2.0",
+        "dependencies": {
+          "GENERIC_COLLECTIONS": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/Automobiles_Store_BACK_END_With_TEXT_FILE.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Automobiles_Store_BACK_END_With_TEXT_FILE.dll": {}
+        }
+      },
+      "GENERIC_COLLECTIONS/1.0.0": {
+        "type": "project",
+        "framework": ".NETStandard,Version=v2.0",
+        "compile": {
+          "bin/placeholder/GENERIC_COLLECTIONS.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/GENERIC_COLLECTIONS.dll": {}
+        }
       }
     }
   },
@@ -3494,10 +3517,21 @@
         "xunit.runner.visualstudio.2.4.0.nupkg.sha512",
         "xunit.runner.visualstudio.nuspec"
       ]
+    },
+    "Automobiles_Store_BACK_END_With_TEXT_FILE/1.0.0": {
+      "type": "project",
+      "path": "../Automobiles_Store_BACK_END_With_TEXT_FILE/Automobiles_Store_BACK_END_With_TEXT_FILE.csproj",
+      "msbuildProject": "../Automobiles_Store_BACK_END_With_TEXT_FILE/Automobiles_Store_BACK_END_With_TEXT_FILE.csproj"
+    },
+    "GENERIC_COLLECTIONS/1.0.0": {
+      "type": "project",
+      "path": "../../../../GENERIC_COLLECTIONS/GENERIC_COLLECTIONS/GENERIC_COLLECTIONS.csproj",
+      "msbuildProject": "../../../../GENERIC_COLLECTIONS/GENERIC_COLLECTIONS/GENERIC_COLLECTIONS.csproj"
     }
   },
   "projectFileDependencyGroups": {
     ".NETCoreApp,Version=v3.1": [
+      "Automobiles_Store_BACK_END_With_TEXT_FILE >= 1.0.0",
       "Microsoft.NET.Test.Sdk >= 16.5.0",
       "coverlet.collector >= 1.2.0",
       "xunit >= 2.4.0",
@@ -3534,7 +3568,11 @@
       },
       "frameworks": {
         "netcoreapp3.1": {
-          "projectReferences": {}
+          "projectReferences": {
+            "D:\\1_PROGRAMARE\\C#\\PROIECTE\\ATESTAT_PROFESIONAL\\Automobiles_Store\\Automobiles_Store_FRONT_END\\Automobiles_Store_BACK_END_With_TEXT_FILE\\Automobiles_Store_BACK_END_With_TEXT_FILE.csproj": {
+              "projectPath": "D:\\1_PROGRAMARE\\C#\\PROIECTE\\ATESTAT_PROFESIONAL\\Automobiles_Store\\Automobiles_Store_FRONT_END\\Automobiles_Store_BACK_END_With_TEXT_FILE\\Automobiles_Store_BACK_END_With_TEXT_FILE.csproj"
+            }
+          }
         }
       },
       "warningProperties": {

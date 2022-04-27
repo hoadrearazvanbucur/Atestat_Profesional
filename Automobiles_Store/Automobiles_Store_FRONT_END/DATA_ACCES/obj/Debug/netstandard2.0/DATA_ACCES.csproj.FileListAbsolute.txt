@@ -1,0 +1,9 @@
+D:\1_PROGRAMARE\C#\PROIECTE\ATESTAT_PROFESIONAL\Automobiles_Store\Automobiles_Store_FRONT_END\DATA_ACCES\bin\Debug\netstandard2.0\DATA_ACCES.deps.json
+D:\1_PROGRAMARE\C#\PROIECTE\ATESTAT_PROFESIONAL\Automobiles_Store\Automobiles_Store_FRONT_END\DATA_ACCES\bin\Debug\netstandard2.0\DATA_ACCES.dll
+D:\1_PROGRAMARE\C#\PROIECTE\ATESTAT_PROFESIONAL\Automobiles_Store\Automobiles_Store_FRONT_END\DATA_ACCES\bin\Debug\netstandard2.0\DATA_ACCES.pdb
+D:\1_PROGRAMARE\C#\PROIECTE\ATESTAT_PROFESIONAL\Automobiles_Store\Automobiles_Store_FRONT_END\DATA_ACCES\obj\Debug\netstandard2.0\DATA_ACCES.csprojAssemblyReference.cache
+D:\1_PROGRAMARE\C#\PROIECTE\ATESTAT_PROFESIONAL\Automobiles_Store\Automobiles_Store_FRONT_END\DATA_ACCES\obj\Debug\netstandard2.0\DATA_ACCES.AssemblyInfoInputs.cache
+D:\1_PROGRAMARE\C#\PROIECTE\ATESTAT_PROFESIONAL\Automobiles_Store\Automobiles_Store_FRONT_END\DATA_ACCES\obj\Debug\netstandard2.0\DATA_ACCES.AssemblyInfo.cs
+D:\1_PROGRAMARE\C#\PROIECTE\ATESTAT_PROFESIONAL\Automobiles_Store\Automobiles_Store_FRONT_END\DATA_ACCES\obj\Debug\netstandard2.0\DATA_ACCES.dll
+D:\1_PROGRAMARE\C#\PROIECTE\ATESTAT_PROFESIONAL\Automobiles_Store\Automobiles_Store_FRONT_END\DATA_ACCES\obj\Debug\netstandard2.0\DATA_ACCES.pdb
+D:\1_PROGRAMARE\C#\PROIECTE\ATESTAT_PROFESIONAL\Automobiles_Store\Automobiles_Store_FRONT_END\DATA_ACCES\obj\Debug\netstandard2.0\DATA_ACCES.csproj.CoreCompileInputs.cache

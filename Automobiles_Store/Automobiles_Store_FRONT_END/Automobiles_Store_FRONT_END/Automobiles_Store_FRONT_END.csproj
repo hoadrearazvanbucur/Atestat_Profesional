@@ -196,6 +196,16 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Automobiles_Store_BACK_END_With_MY_SQL\Automobiles_Store_BACK_END_With_MY_SQL.csproj">
+      <Project>{ca8504fa-141e-4d2f-b4b2-6af1e2259d27}</Project>
+      <Name>Automobiles_Store_BACK_END_With_MY_SQL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Automobiles_Store_BACK_END_With_TEXT_FILE\Automobiles_Store_BACK_END_With_TEXT_FILE.csproj">
+      <Project>{a245bc68-d21c-4f43-a1cc-5caa331df2c4}</Project>
+      <Name>Automobiles_Store_BACK_END_With_TEXT_FILE</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\System.Text.Json.6.0.0\build\System.Text.Json.targets" Condition="Exists('..\packages\System.Text.Json.6.0.0\build\System.Text.Json.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

@@ -14,10 +14,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="1_User_Tests\" />
-    <Folder Include="2_Automobile_Tests\" />
-    <Folder Include="3_Order_Tests\" />
-    <Folder Include="4_Integration_Tests\" />
+    <ProjectReference Include="..\Automobiles_Store_BACK_END_With_TEXT_FILE\Automobiles_Store_BACK_END_With_TEXT_FILE.csproj" />
   </ItemGroup>
 
 </Project>
