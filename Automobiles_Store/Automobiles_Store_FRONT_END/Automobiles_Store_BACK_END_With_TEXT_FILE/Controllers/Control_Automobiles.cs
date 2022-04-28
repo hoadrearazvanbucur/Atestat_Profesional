@@ -1,4 +1,5 @@
-﻿using Automobiles_Store_BACK_END_With_TEXT_FILE.Models;
+﻿using Automobiles_Store_BACK_END_With_TEXT_FILE.Exceptions;
+using Automobiles_Store_BACK_END_With_TEXT_FILE.Models;
 using GENERIC_COLLECTIONS;
 using System;
 using System.Collections.Generic;
@@ -17,22 +18,24 @@ namespace Automobiles_Store_BACK_END_With_TEXT_FILE.Controllers
         {
             this.lista = new Lista<Automobile>();
             this.dataBase = dataBase;
+            this.loadData();
         }
 
-        public void load()
+        public void loadData()
         {
-            this.clear();
-            StreamReader file = new StreamReader(this.path()+ @"\Automobiles_Store_BACK_END_With_TEXT_FILE\bin\Debug\netstandard2.0\1_RESORCES\" + this.dataBase + @"\Automobiles_File.txt");
+            this.clearData();
+            StreamReader file = new StreamReader(this.path() + @"\Automobiles_Store_BACK_END_With_TEXT_FILE\bin\Debug\netstandard2.0\1_RESORCES\" + this.dataBase + @"\Automobiles_File.txt");
             string line = "";
             while ((line = file.ReadLine()) != null)
-                lista.adaugareSfarsit(new Automobile(line));
+                this.lista.adaugareSfarsit(new Automobile(line));
             file.Close();
         }
-        public void save()
+
+        public void saveData()
         {
             StreamWriter file = new StreamWriter(this.path() + @"\Automobiles_Store_BACK_END_With_TEXT_FILE\bin\Debug\netstandard2.0\1_RESORCES\" + this.dataBase + @"\Automobiles_File.txt");
-            for (int i = 0; i < this.lista.dimensiune(); i++)
-                file.WriteLine(lista.obtine(i).Data.ToString());
+            for (int i = 0; i < this.dimensiune(); i++)
+                file.WriteLine(this.obtine(i).Data.ToString());
             file.Close();
         }
 
@@ -51,88 +54,171 @@ namespace Automobiles_Store_BACK_END_With_TEXT_FILE.Controllers
             }
             return null;
         }
-        public void clear()
+
+
+        public Automobile obtineAutomobilDupaId(int id)
         {
-            if (this.lista.listaGoala() != true)
-                for (int i = this.lista.dimensiune() - 1; i >= 0; i--)
-                    this.lista.stergereData(this.lista.obtine(i).Data);
+            if (this.existaId(id) == true)
+            {
+                int index = -1;
+                for (int i = 0; i < this.dimensiune(); i++)
+                    if (this.obtine(i).Data.Id == id)
+                    {
+                        index = i;
+                        break;
+                    }
+                return this.obtine(index).Data;
+            }
+            else
+                throw new Automobile_Exception("Nu exista un automobil cu id-ul acesta");
         }
 
-        public string show()
+        public int obtineIdDupaAutomobil(Automobile automobile)
         {
-            string text = "";
-            for (int i = 0; i < this.lista.dimensiune(); i++)
-                text += this.lista.obtine(i).Data.ToString() + "\n";
-            return text;
-        }
-        public void adding(string data)
-        {
-            this.lista.adaugareSfarsit(new Automobile(data));
-        }
-        public void removal(Automobile automobile)
-        {
-            this.lista.stergereData(automobile);
+            for (int i = 0; i < this.dimensiune(); i++)
+                if (this.obtine(i).Data.CompareTo(automobile) == 0)
+                    return this.obtine(i).Data.Id;
+            throw new Automobile_Exception("Acest automobil nu exista");
         }
 
-        public void changeId(int id, int newId)
+        public int generationId()
         {
-            this.lista.obtine(this.positionId(id)).Data.Id = newId;
-        }
-        public void changeKm(int id, int newKm)
-        {
-            this.lista.obtine(this.positionId(id)).Data.Km = newKm;
-        }
-        public void changeAmount(int id, int newAmount)
-        {
-            this.lista.obtine(this.positionId(id)).Data.Amount = newAmount;
-        }
-        public void changePrice(int id, double newPrice)
-        {
-            this.lista.obtine(this.positionId(id)).Data.Price = newPrice;
-        }
-        public void changeBrand(int id, string newBrand)
-        {
-            this.lista.obtine(this.positionId(id)).Data.Brand = newBrand;
-        }
-        public void changeModel(int id, string newModel)
-        {
-            this.lista.obtine(this.positionId(id)).Data.Model = newModel;
-        }
-        public void changeColor(int id, string newColor)
-        {
-            this.lista.obtine(this.positionId(id)).Data.Color = newColor;
+            if (this.listaGoala() == false)
+                return this.obtine(this.dimensiune() - 1).Data.Id + 1;
+            else
+                return 1;
         }
 
         public int positionId(int id)
         {
-            int k = 0;
-            for (int i = 0; i < this.lista.dimensiune(); i++)
-                if (this.lista.obtine(i).Data.Id == id)
-                    return k;
-                else
-                    k++;
-            return -1;
-        }
-        public int generationId()
-        {
-            if (this.lista.listaGoala() != true)
-                return this.lista.obtine(this.lista.dimensiune() - 1).Data.Id + 1;
+            int k = -1;
+            for (int i = 0; i < this.dimensiune(); i++)
+                if (this.obtine(i).Data.Id == id)
+                {
+                    k = i;
+                    break;
+                }
+            if (k == -1)
+                throw new Automobile_Exception("Acest id nu exista");
             else
-                return 1;
+                return k;
         }
+
+        public bool existaId(int id)
+        {
+            for (int i = 0; i < this.dimensiune(); i++)
+                if (this.obtine(i).Data.Id == id)
+                    return true;
+            return false;
+        }
+
+
+        public void adaugareSfarsit(Automobile automobile)
+        {
+            if (this.exista(automobile) == false)
+                this.lista.adaugareSfarsit(automobile);
+            else
+                throw new Automobile_Exception("Acest automobil exista deja");
+        }
+
+        public void adaugareInceput(Automobile automobile)
+        {
+            if (this.exista(automobile) == false)
+                this.lista.adaugareInceput(automobile);
+            else
+                throw new Automobile_Exception("Acest automobil exista deja");
+        }
+
+        public void adaugarePozitie(Automobile automobile, int index)
+        {
+            if (this.exista(automobile) == false && index >= 0 && index <= this.dimensiune())
+                this.lista.adaugarePozitie(automobile, index);
+            else
+                if (this.exista(automobile) == true)
+                throw new Automobile_Exception("Acest automobil exista deja");
+            else
+                throw new Automobile_Exception("Nu putem adauga pe aceasta pozitie");
+        }
+
+
+        public void stergereData(Automobile automobile)
+        {
+            if (this.exista(automobile) == true)
+                this.lista.stergereData(automobile);
+            else
+                throw new Automobile_Exception("Acest automobil exista deja");
+        }
+
+        public void stergerePozitie(int index)
+        {
+            if (index >= 0 && index < this.dimensiune())
+                this.lista.stergerePozitie(index);
+            else
+                throw new Automobile_Exception("Nu putem sterge automobilul din aceasta pozitie");
+        }
+
+
+        public void modificareDupaAutomobil(Automobile inlocuit, Automobile inlocuire)
+        {
+            if (this.exista(inlocuit) == true)
+            {
+                this.lista.modificareData(inlocuit, inlocuire);
+            }
+            else
+                throw new Automobile_Exception("Automobilul pe care doriti sa il modificati nu exista");
+        }
+
+        public void modificareDupaId(int id, Automobile inlocuire)
+        {
+            if (this.existaId(id) == true)
+            {
+                this.lista.modificarePozitie(this.positionId(id), inlocuire);
+            }
+            else
+                throw new Automobile_Exception("Automobilul pe care doriti sa il modificati nu exista");
+        }
+
+
+        public Nod<Automobile> obtine(int index)
+        {
+            if (index >= 0 && index < this.dimensiune())
+                return this.lista.obtine(index);
+            throw new Automobile_Exception("Aceasta pozitie nu exista");
+        }
+
+        public int pozitieData(Automobile data)
+        {
+            if (this.exista(data) == true)
+                return this.lista.pozitieData(data);
+            else
+                throw new Automobile_Exception("Acest automobil nu exista");
+        }
+
+        public bool exista(Automobile data) => this.lista.exista(data);
+
+
+        public bool listaGoala() => this.lista.listaGoala();
+
+        public int dimensiune() => this.lista.dimensiune();
+
+        public void clearData()
+        {
+            if (this.listaGoala() == false)
+                this.lista.golireLista();
+            else
+                throw new Automobile_Exception("Lista este deja goala");
+        }
+
+
+        public void sortare(Comparer<Automobile> comparer, int value) => this.lista.sortare(comparer, value);
+
+        public string afisare() => this.lista.afisare();
+
 
         public ILista<Automobile> Lista
         {
             get => this.lista;
             set => this.lista = value;
-        }
-        public bool exist_Test(string text)
-        {
-            string[] textSplit = text.Split('|');
-            for (int i = 0; i < this.lista.dimensiune(); i++)
-                if (this.lista.obtine(i).Data.Id == int.Parse(textSplit[0]) && this.lista.obtine(i).Data.Km == int.Parse(textSplit[4]) && this.lista.obtine(i).Data.Amount == int.Parse(textSplit[6]) && this.lista.obtine(i).Data.Price == double.Parse(textSplit[5]) && this.lista.obtine(i).Data.Brand == textSplit[1] && this.lista.obtine(i).Data.Model == textSplit[2] && this.lista.obtine(i).Data.Color == textSplit[3])
-                    return true;
-            return false;
         }
 
         public string DataBase

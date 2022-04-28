@@ -27,8 +27,8 @@ namespace Automobiles_Store_BACK_END_With_TEXT_FILE.Models
         public int CompareTo(Automobile other)
         {
             if (other.Brand.Equals(this.brand) == true && other.Model.Equals(this.model) == true && other.Color.Equals(this.color) == true && other.Km == this.km && other.Price == this.price && other.Amount == this.amount)
-                return 1;
-            return 0;
+                return 0;
+            return 1;
         }
 
         public int Id

@@ -53,8 +53,8 @@ namespace Automobiles_Store_BACK_END_With_MY_SQL.Models
         public int CompareTo(Order other)
         {
             if (this.ToStringWithNoId(other).Equals(this.ToStringWithNoId(this)) == true)
-                return 1;
-            return 0;
+                return 0;
+            return 1;
         }
 
         public void addAutomobile(int dataAutomobile_ID, int dataAmount)

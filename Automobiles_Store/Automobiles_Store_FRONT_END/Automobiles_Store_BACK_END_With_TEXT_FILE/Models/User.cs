@@ -22,9 +22,9 @@ namespace Automobiles_Store_BACK_END_With_TEXT_FILE.Models
         public override bool Equals(object obj) => (obj as User).ToString() == this.ToString();
         public int CompareTo(User other)
         {
-            if (other.Admin == this.admin && other.Name.Equals(this.name) == true && other.Password.Equals(this.password) == true)
-                return 1;
-            return 0;
+            if (other.Name.Equals(this.name) == true && other.Password.Equals(this.password) == true)
+                return 0;
+            return 1;
         }
 
         public int Id

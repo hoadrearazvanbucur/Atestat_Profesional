@@ -4,6 +4,7 @@ using System.Text;
 using System.IO;
 using Automobiles_Store_BACK_END_With_TEXT_FILE.Models;
 using GENERIC_COLLECTIONS;
+using Automobiles_Store_BACK_END_With_TEXT_FILE.Exceptions;
 
 namespace Automobiles_Store_BACK_END_With_TEXT_FILE.Controllers
 {
@@ -18,20 +19,20 @@ namespace Automobiles_Store_BACK_END_With_TEXT_FILE.Controllers
             this.dataBase = dataBase;
         }
 
-        public void load()
+        public void loadData()
         {
-            this.clear();
+            this.clearData();
             StreamReader file = new StreamReader(this.path() + @"\Automobiles_Store_BACK_END_With_TEXT_FILE\bin\Debug\netstandard2.0\1_RESORCES\" + this.dataBase + @"\Users_File.txt");
             string line = "";
             while ((line = file.ReadLine()) != null)
-                lista.adaugareSfarsit(new User(line));
+                this.lista.adaugareSfarsit(new User(line));
             file.Close();
         }
-        public void save()
+        public void saveData()
         {
             StreamWriter file = new StreamWriter(this.path() + @"\Automobiles_Store_BACK_END_With_TEXT_FILE\bin\Debug\netstandard2.0\1_RESORCES\" + this.dataBase + @"\Users_File.txt");
-            for (int i = 0; i < this.lista.dimensiune(); i++)
-                file.WriteLine(lista.obtine(i).Data.ToString());
+            for (int i = 0; i < this.dimensiune(); i++)
+                file.WriteLine(this.obtine(i).Data.ToString());
             file.Close();
         }
         public string path()
@@ -49,53 +50,65 @@ namespace Automobiles_Store_BACK_END_With_TEXT_FILE.Controllers
             }
             return null;
         }
-        public void clear()
-        {
-            if (this.lista.listaGoala() != true)
-                for (int i = this.lista.dimensiune() - 1; i >= 0; i--)
-                    this.lista.stergereData(this.lista.obtine(i).Data);
-        }
 
-        public string show()
-        {
-            string text = "";
-            for (int i = 0; i < this.lista.dimensiune(); i++)
-                text += this.lista.obtine(i).Data.ToString() + "\n";
-            return text;
-        }
-        public void adding(string data)
-        {
-            this.lista.adaugareSfarsit(new User(data));
-        }
-        public void removal(User user)
-        {
-            this.lista.stergereData(user);
-        }
 
-        public void changeId(int id, int newId)
-        {
-            this.lista.obtine(this.positionId(id)).Data.Id = newId;
-        }
-        public void changeAdmin(int id, int newAdmin)
-        {
-            this.lista.obtine(this.positionId(id)).Data.Admin = newAdmin;
-        }
-        public void changeName(int id, string newName)
-        {
-            this.lista.obtine(this.positionId(id)).Data.Name = newName;
-        }
-        public void changePassword(int id, string newPassword)
-        {
-            this.lista.obtine(this.positionId(id)).Data.Password = newPassword;
-        }
 
-        public void makeRemoveAdmin(int id, int adminIndex)
+        public User obtineUserDupaId(int id)
         {
-            if (adminIndex == 1)
-                this.lista.obtine(this.positionId(id)).Data.Admin = 0;
+            if (this.existaId(id) == true)
+            {
+                int index = -1;
+                for (int i = 0; i < this.dimensiune(); i++)
+                    if (this.obtine(i).Data.Id == id)
+                    {
+                        index = i;
+                        break;
+                    }
+                return this.obtine(index).Data;
+            }
             else
-                this.lista.obtine(this.positionId(id)).Data.Admin = 1;
+                throw new User_Exception("Nu exista un user cu id-ul acesta");
         }
+        public int obtineIdDupaUser(User user)
+        {
+            for (int i = 0; i < this.dimensiune(); i++)
+                if (this.obtine(i).Data.CompareTo(user) == 0)
+                    return this.obtine(i).Data.Id;
+            throw new User_Exception("Acest user nu exista");
+        }
+
+
+
+        public int generationId()
+        {
+            if (this.listaGoala() == false)
+                return this.obtine(this.dimensiune() - 1).Data.Id + 1;
+            else
+                return 1;
+        }
+        public int positionId(int id)
+        {
+            int k = -1;
+            for (int i = 0; i < this.dimensiune(); i++)
+                if (this.obtine(i).Data.Id == id)
+                {
+                    k = i;
+                    break;
+                }
+            if (k == -1)
+                throw new User_Exception("Acest id nu exista");
+            else
+                return k;
+        }
+        public bool existaId(int id)
+        {
+            for (int i = 0; i < this.dimensiune(); i++)
+                if (this.obtine(i).Data.Id == id)
+                    return true;
+            return false;
+        }
+
+
         public int getId(string name, string password)
         {
             for (int i = 0; i < this.lista.dimensiune(); i++)
@@ -117,38 +130,103 @@ namespace Automobiles_Store_BACK_END_With_TEXT_FILE.Controllers
                     return true;
             return false;
         }
-        public int positionId(int id)
+
+
+
+
+
+
+
+
+
+        public void adaugareSfarsit(User user)
         {
-            int k = 0;
-            for (int i = 0; i < this.lista.dimensiune(); i++)
-                if (this.lista.obtine(i).Data.Id == id)
-                    return k;
-                else
-                    k++;
-            return -1;
-        }
-        public int generationId()
-        {
-            if (this.lista.listaGoala() != true)
-                return this.lista.obtine(this.lista.dimensiune() - 1).Data.Id + 1;
+            if (this.exista(user) == false)
+                this.lista.adaugareSfarsit(user);
             else
-                return 1;
+                throw new User_Exception("Acest user exista deja");
         }
+        public void adaugareInceput(User user)
+        {
+            if (this.exista(user) == false)
+                this.lista.adaugareInceput(user);
+            else
+                throw new User_Exception("Acest automobil exista deja");
+        }
+        public void adaugarePozitie(User user, int index)
+        {
+            if (this.exista(user) == false && index >= 0 && index <= this.dimensiune())
+                this.lista.adaugarePozitie(user, index);
+            else
+                if (this.exista(user) == true)
+                throw new User_Exception("Acest user exista deja");
+            else
+                throw new User_Exception("Nu putem adauga pe aceasta pozitie");
+        }
+        public void stergereData(User user)
+        {
+            if (this.exista(user) == true)
+                this.lista.stergereData(user);
+            else
+                throw new User_Exception("Acest user exista deja");
+        }
+        public void stergerePozitie(int index)
+        {
+            if (index >= 0 && index < this.dimensiune())
+                this.lista.stergerePozitie(index);
+            else
+                throw new User_Exception("Nu putem sterge user-ul din aceasta pozitie");
+        }
+        public void modificareDupaUser(User inlocuit, User inlocuire)
+        {
+            if (this.exista(inlocuit) == true)
+            {
+                this.lista.modificareData(inlocuit, inlocuire);
+            }
+            else
+                throw new User_Exception("User-ul pe care doriti sa il modificati nu exista");
+        }
+        public void modificareDupaId(int id, User inlocuire)
+        {
+            if (this.existaId(id) == true)
+            {
+                this.lista.modificarePozitie(this.positionId(id), inlocuire);
+            }
+            else
+                throw new User_Exception("User-ul pe care doriti sa il modificati nu exista");
+        }
+        public Nod<User> obtine(int index)
+        {
+            if (index >= 0 && index < this.dimensiune())
+                return this.lista.obtine(index);
+            throw new User_Exception("Aceasta pozitie nu exista");
+        }
+        public int pozitieData(User data)
+        {
+            if (this.exista(data) == true)
+                return this.lista.pozitieData(data);
+            else
+                throw new User_Exception("Acest automobil nu exista");
+        }
+        public bool exista(User data) => this.lista.exista(data);
+        public bool listaGoala() => this.lista.listaGoala();
+        public int dimensiune() => this.lista.dimensiune();
+        public void clearData()
+        {
+            if (this.listaGoala() == false)
+                this.lista.golireLista();
+            else
+                throw new User_Exception("Lista este deja goala");
+        }
+        public void sortare(Comparer<User> comparer, int value) => this.lista.sortare(comparer, value);
+        public string afisare() => this.lista.afisare();
+
 
         public ILista<User> Lista
         {
             get => this.lista;
             set => this.lista = value;
         }
-        public bool exist_Test(string text)
-        {
-            string[] textSplit = text.Split('|');
-            for (int i = 0; i < this.lista.dimensiune(); i++)
-                if (this.lista.obtine(i).Data.Id == int.Parse(textSplit[0]) && this.lista.obtine(i).Data.Admin == int.Parse(textSplit[1]) && this.lista.obtine(i).Data.Name == textSplit[2] && this.lista.obtine(i).Data.Password == textSplit[3])
-                    return true;
-            return false;
-        }
-
         public string DataBase
         {
             get => this.dataBase;
