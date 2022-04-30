@@ -17,6 +17,7 @@ namespace Automobiles_Store_BACK_END_With_TEXT_FILE.Controllers
         {
             this.lista = new Lista<User>();
             this.dataBase = dataBase;
+            this.loadData();
         }
 
         public void loadData()
@@ -79,14 +80,27 @@ namespace Automobiles_Store_BACK_END_With_TEXT_FILE.Controllers
 
 
 
-        public int generationId()
+        public int generareId()
         {
             if (this.listaGoala() == false)
-                return this.obtine(this.dimensiune() - 1).Data.Id + 1;
+                return maximId() + 1;
             else
                 return 1;
         }
-        public int positionId(int id)
+
+        public int maximId()
+        {
+            int maxim = int.MinValue;
+            for (int i = 0; i < this.dimensiune(); i++)
+                if (maxim < this.obtine(i).Data.Id)
+                    maxim = this.obtine(i).Data.Id;
+            if (maxim != int.MinValue)
+                return maxim;
+            else
+                return 1;
+        }
+
+        public int pozitieId(int id)
         {
             int k = -1;
             for (int i = 0; i < this.dimensiune(); i++)
@@ -109,33 +123,29 @@ namespace Automobiles_Store_BACK_END_With_TEXT_FILE.Controllers
         }
 
 
-        public int getId(string name, string password)
+
+
+        public int obtineId(string name, string password)
         {
-            for (int i = 0; i < this.lista.dimensiune(); i++)
-                if (this.lista.obtine(i).Data.Name == name && this.lista.obtine(i).Data.Password == password)
-                    return this.lista.obtine(i).Data.Id;
+            for (int i = 0; i < this.dimensiune(); i++)
+                if (this.obtine(i).Data.Name == name && this.obtine(i).Data.Password == password)
+                    return this.obtine(i).Data.Id;
             return -1;
         }
-        public int getAdmin(string name, string password)
+        public int obtineAdmin(string name, string password)
         {
-            for (int i = 0; i < this.lista.dimensiune(); i++)
-                if (this.lista.obtine(i).Data.Name == name && this.lista.obtine(i).Data.Password == password)
-                    return this.lista.obtine(i).Data.Admin;
+            for (int i = 0; i < this.dimensiune(); i++)
+                if (this.obtine(i).Data.Name == name && this.obtine(i).Data.Password == password)
+                    return this.obtine(i).Data.Admin;
             return -1;
         }
-        public bool login_exist(string name, string password)
+        public bool login_exista(string name, string password)
         {
-            for (int i = 0; i < this.lista.dimensiune(); i++)
-                if (this.lista.obtine(i).Data.Name == name && this.lista.obtine(i).Data.Password == password)
+            for (int i = 0; i < this.dimensiune(); i++)
+                if (this.obtine(i).Data.Name == name && this.obtine(i).Data.Password == password)
                     return true;
             return false;
         }
-
-
-
-
-
-
 
 
 
@@ -190,7 +200,7 @@ namespace Automobiles_Store_BACK_END_With_TEXT_FILE.Controllers
         {
             if (this.existaId(id) == true)
             {
-                this.lista.modificarePozitie(this.positionId(id), inlocuire);
+                this.lista.modificarePozitie(this.pozitieId(id), inlocuire);
             }
             else
                 throw new User_Exception("User-ul pe care doriti sa il modificati nu exista");
@@ -211,13 +221,8 @@ namespace Automobiles_Store_BACK_END_With_TEXT_FILE.Controllers
         public bool exista(User data) => this.lista.exista(data);
         public bool listaGoala() => this.lista.listaGoala();
         public int dimensiune() => this.lista.dimensiune();
-        public void clearData()
-        {
-            if (this.listaGoala() == false)
-                this.lista.golireLista();
-            else
-                throw new User_Exception("Lista este deja goala");
-        }
+        public void clearData() => this.lista.golireLista();
+
         public void sortare(Comparer<User> comparer, int value) => this.lista.sortare(comparer, value);
         public string afisare() => this.lista.afisare();
 

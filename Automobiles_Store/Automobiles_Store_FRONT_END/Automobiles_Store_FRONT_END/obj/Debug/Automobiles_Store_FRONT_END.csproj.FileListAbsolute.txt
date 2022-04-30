@@ -135,3 +135,5 @@ C:\Users\Hoadrea Razvan\Desktop\ATESTAT_PROFESIONAL\Automobiles_Store\Automobile
 C:\Users\Hoadrea Razvan\Desktop\ATESTAT_PROFESIONAL\Automobiles_Store\Automobiles_Store_FRONT_END\Automobiles_Store_FRONT_END\obj\Debug\Automobiles_Store_FRONT_END.csproj.CopyComplete
 C:\Users\Hoadrea Razvan\Desktop\ATESTAT_PROFESIONAL\Automobiles_Store\Automobiles_Store_FRONT_END\Automobiles_Store_FRONT_END\obj\Debug\Automobiles_Store_FRONT_END.exe
 C:\Users\Hoadrea Razvan\Desktop\ATESTAT_PROFESIONAL\Automobiles_Store\Automobiles_Store_FRONT_END\Automobiles_Store_FRONT_END\obj\Debug\Automobiles_Store_FRONT_END.pdb
+D:\1_PROGRAMARE\C#\PROIECTE\ATESTAT_PROFESIONAL\Automobiles_Store\Automobiles_Store_FRONT_END\Automobiles_Store_FRONT_END\bin\Debug\DATA_ACCES.dll
+D:\1_PROGRAMARE\C#\PROIECTE\ATESTAT_PROFESIONAL\Automobiles_Store\Automobiles_Store_FRONT_END\Automobiles_Store_FRONT_END\bin\Debug\DATA_ACCES.pdb

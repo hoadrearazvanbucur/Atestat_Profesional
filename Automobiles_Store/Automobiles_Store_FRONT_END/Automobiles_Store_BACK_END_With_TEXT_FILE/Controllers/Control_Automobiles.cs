@@ -81,15 +81,27 @@ namespace Automobiles_Store_BACK_END_With_TEXT_FILE.Controllers
             throw new Automobile_Exception("Acest automobil nu exista");
         }
 
-        public int generationId()
+        public int generareId()
         {
             if (this.listaGoala() == false)
-                return this.obtine(this.dimensiune() - 1).Data.Id + 1;
+                return maximId() + 1;
             else
                 return 1;
         }
 
-        public int positionId(int id)
+        public int maximId()
+        {
+            int maxim = int.MinValue;
+            for (int i = 0; i < this.dimensiune(); i++)
+                if (maxim < this.obtine(i).Data.Id)
+                    maxim = this.obtine(i).Data.Id;
+            if (maxim != int.MinValue)
+                return maxim;
+            else
+                return 1;
+        }
+
+        public int pozitieId(int id)
         {
             int k = -1;
             for (int i = 0; i < this.dimensiune(); i++)
@@ -172,7 +184,7 @@ namespace Automobiles_Store_BACK_END_With_TEXT_FILE.Controllers
         {
             if (this.existaId(id) == true)
             {
-                this.lista.modificarePozitie(this.positionId(id), inlocuire);
+                this.lista.modificarePozitie(this.pozitieId(id), inlocuire);
             }
             else
                 throw new Automobile_Exception("Automobilul pe care doriti sa il modificati nu exista");
@@ -201,18 +213,16 @@ namespace Automobiles_Store_BACK_END_With_TEXT_FILE.Controllers
 
         public int dimensiune() => this.lista.dimensiune();
 
-        public void clearData()
-        {
-            if (this.listaGoala() == false)
-                this.lista.golireLista();
-            else
-                throw new Automobile_Exception("Lista este deja goala");
-        }
+        public void clearData() => this.lista.golireLista();
+        
 
 
         public void sortare(Comparer<Automobile> comparer, int value) => this.lista.sortare(comparer, value);
 
         public string afisare() => this.lista.afisare();
+
+
+
 
 
         public ILista<Automobile> Lista

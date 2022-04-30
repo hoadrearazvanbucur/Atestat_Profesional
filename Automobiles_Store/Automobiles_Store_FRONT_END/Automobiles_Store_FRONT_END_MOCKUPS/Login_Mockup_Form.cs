@@ -5,19 +5,16 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
-using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.Windows.Input;
-
 
 namespace Automobiles_Store_FRONT_END_MOCKUPS
 {
-    public partial class Form1 : Form
+    public partial class Login_Mockup_Form : Form
     {
-        public Form1()
+        public Login_Mockup_Form()
         {
-            InitializeComponent(); 
+            InitializeComponent();
         }
     }
 }

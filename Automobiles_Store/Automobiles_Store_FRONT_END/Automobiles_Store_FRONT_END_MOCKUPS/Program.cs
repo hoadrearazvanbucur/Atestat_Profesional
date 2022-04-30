@@ -16,7 +16,7 @@ namespace Automobiles_Store_FRONT_END_MOCKUPS
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Form1());
+            Application.Run(new Admin_Account_Iterface_Mockup_Form());
         }
     }
 }

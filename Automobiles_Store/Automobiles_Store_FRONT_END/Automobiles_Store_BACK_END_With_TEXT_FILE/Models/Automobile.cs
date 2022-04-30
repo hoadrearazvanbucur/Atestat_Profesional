@@ -19,7 +19,7 @@ namespace Automobiles_Store_BACK_END_With_TEXT_FILE.Models
             this.color = dataSplit[3];
             this.km = int.Parse(dataSplit[4]);
             this.price = double.Parse(dataSplit[5]);
-            this.amount = int.Parse(dataSplit[6]);
+            this.amount = int.Parse(dataSplit[6]);//condidii de existenta
         }
 
         public override string ToString() => this.id + "|" + this.brand + "|" + this.model + "|" + this.color + "|" + this.km + "|" + this.price + "|" + this.amount;

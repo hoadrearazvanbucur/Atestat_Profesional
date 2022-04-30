@@ -33,8 +33,13 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Guna.UI2">
+      <HintPath>..\..\..\..\..\..\..\2_FISIERE\Informatica Lucruri\TOOLBOXS\Guna_UI_Framework_Ultimate_v2.0.0.1\Guna_UI_Framework_Ultimate_v2.0.0.1\Guna.UI-Framework-Lib-master\Guna.UI2 WinForms\.net 4.0\Guna.UI2.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.VisualBasic" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Management" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -46,16 +51,43 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Form1.cs">
+    <Compile Include="Admin_Account_Iterface_Mockup_Form.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="Admin_Account_Iterface_Mockup_Form.Designer.cs">
+      <DependentUpon>Admin_Account_Iterface_Mockup_Form.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Admin_Automobile_Iterface_Mockup_Form.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Admin_Automobile_Iterface_Mockup_Form.Designer.cs">
+      <DependentUpon>Admin_Automobile_Iterface_Mockup_Form.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Loading_Mockup_Form.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Loading_Mockup_Form.Designer.cs">
+      <DependentUpon>Loading_Mockup_Form.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Login_Mockup_Form.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Login_Mockup_Form.Designer.cs">
+      <DependentUpon>Login_Mockup_Form.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="Form1.resx">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="User_Interface_Mockup_Form.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="User_Interface_Mockup_Form.Designer.cs">
+      <DependentUpon>User_Interface_Mockup_Form.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="Admin_Account_Iterface_Mockup_Form.resx">
+      <DependentUpon>Admin_Account_Iterface_Mockup_Form.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Admin_Automobile_Iterface_Mockup_Form.resx">
+      <DependentUpon>Admin_Automobile_Iterface_Mockup_Form.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
